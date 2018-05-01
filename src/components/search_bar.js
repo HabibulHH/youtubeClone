@@ -7,23 +7,30 @@ class  SearchBar extends Component{
 
         super(props);
         this.state={term:''}
+        this.onInputChange.bind(this);
     }
 
-    onInputChange(event){
+    onInputChange(term){
 
+        this.setState({term});
+        this.props.onSearchTermChnage(term);
         
-        console.log(event.target.value);
    
     }
+    
     render(){
+        const pStyle = {
+            'marginTop': '30px',
+            'marginBottom': '20px',
+            'textAlign': 'left'
+          };
+          
         return (
         
             <div>
-        <input  className="col-md-6 form-control" onChange={
-            (event)=>{
-                this.setState=({term:event.target.value});
-              
-            }}type="text"/>
+        <input style={pStyle} className="col-md-6 form-control form-control-lg"
+         onChange={event=>{this.onInputChange(event.target.value)}}type="text" 
+         value={this.state.term}/>
 
            </div>        
         );  

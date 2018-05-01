@@ -15,9 +15,21 @@ const VideoDetail=({video})=>{
              
            </iframe>
          </div>
-          <div className="details">
-            <div>{video.snippet.title}</div>
-            <div>{video.snippet.description}</div>
+
+         <div className="card">
+            <div className="card-header">
+            {video.snippet.title}
+            </div>
+            <div className="card-body">
+                <blockquote className="blockquote mb-0">
+                    <p>{video.snippet.description}</p>
+                    
+                </blockquote>
+            </div>
+       </div>
+          <div className="details ">
+            <div className="success"></div>
+            <div className="alert alert-dark"></div>
           </div>
         </div>
     );
