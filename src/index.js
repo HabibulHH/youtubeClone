@@ -4,10 +4,13 @@ import YTSearch from 'youtube-api-search';
 import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 
 const YTD_APIKEY='AIzaSyDG0iAAeUZmQ2_qDu_yVzbV9--FdoyBlmw';
 
-class  App extends Component{
+class  App extends Component
+{
+
     constructor(props){
         super(props);
 
@@ -19,13 +22,15 @@ class  App extends Component{
     }
     render(){
     return (
+             <div>
          
-                <SearchBar  />
-                <div className="col-md-6">
-                    <VideoList videos={this.state.videos}/> 
-                </div>
-            
-        )
+                    <SearchBar  />
+                    <VideoDetail  video={this.state.videos[0]}/>
+                    <div className="col-md-6">
+                        <VideoList videos={this.state.videos}/> 
+                    </div>
+            </div>
+            );
     }
 }
 // intercat with real DOM
