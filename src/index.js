@@ -6,37 +6,43 @@ import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
 import NavBar from './components/nav';
-
 const YTD_APIKEY='AIzaSyDG0iAAeUZmQ2_qDu_yVzbV9--FdoyBlmw';
+
 
 class  App extends Component
 {
-
+    
     constructor(props){
         super(props);
 
         this.state={videos:[],selectedVido:null};
-        this.videoSearch('go pro');
-        
+        this.videoSearch('gopro');
+        var Loader = require('react-loaders').Loader;
     }
+     renderLoader() {
+        return <Loader type="line-scale" active />
+      }
     videoSearch(term){
         YTSearch({key:YTD_APIKEY,term:term,},(videos)=>{
             console.log(videos)
             this.setState(
                 {
                     videos:videos,
-                    selectedVido:videos[0]
+                    selectedVido:videos[0],
+                    loaded:true
                 
                 })
         });
     }
+    
     render(){
 
+        
         const videoSearchBounce=_.debounce((term)=>{
-            this.videoSearch(term)},300);
-    return (
-             <div>
-         
+            this.videoSearch(term)},800);
+          
+            return (
+             <div>  
                     <SearchBar onSearchTermChnage={videoSearchBounce} />
                     <VideoDetail  video={this.state.selectedVido}/>
                      <VideoList onVideoSelected={selectedVido=>this.setState({selectedVido})}

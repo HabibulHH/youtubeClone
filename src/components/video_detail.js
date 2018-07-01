@@ -1,10 +1,19 @@
 import React from 'react'
-
+var Loader = require('react-loader');
 const VideoDetail=({video})=>{
 
     if(!video)
     {
-        return <div>Loading....</div>
+       return( <div className="video-detail col-md-8">
+       
+       <Loader loaded={false} lines={20} length={20} width={10} radius={30}
+       corners={1} rotate={0} direction={1} color="#0056AF" speed={1}
+       trail={60} shadow={false} hwaccel={false} className="spinner"
+       zIndex={2e9} top="50%" left="50%" scale={1.00}
+       loadedClassName="loadedContent" />
+       </div>
+       )
+       
     }
     const videoID=video.id.videoId;
     const url=`https://www.youtube.com/embed/${videoID}`;
